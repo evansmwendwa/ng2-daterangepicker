@@ -13,6 +13,7 @@
       "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
     }
   ],
+  "main" : "index.js",
   "dependencies": {
     "@angular/common": "~2.2.0",
     "@angular/compiler": "~2.2.0",
