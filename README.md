@@ -37,7 +37,7 @@ export class AppComponent {
 
     public daterange: any = {};
 
-    private selectedDate(value: any, dateInput: any) {
+    private selectedDate(value: any) {
         daterange.start = value.start;
         daterange.end = value.end;
     }
