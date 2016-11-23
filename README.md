@@ -10,13 +10,13 @@ npm install ng2-daterangepicker --save
 
 Add [Bootstrap](http://getbootstrap.com/) to your project's index.html or include in your workflow
 
-```
+``` html
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 ```
 
 import the `Daterangepicker` module in your application module
 
-```
+``` javascript
 import { Daterangepicker } from 'ng2-daterangepicker';
 
 @NgModule({
@@ -28,7 +28,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 Use the directive in your component by passing in options `{}` and consuming the `selected` event.
 See this project's `src/app/app.component.ts` for a full usage example
 
-```
+``` javascript
 @Component({
     selector: 'my-app',
     template: `<input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)" />`,
@@ -46,7 +46,7 @@ export class AppComponent {
 
 You can pass global settings that can be overloaded by the `options` object in the daterangepicker instances. Use the `DaterangepickerConfig` service to do so. The service provider is set in the daterangepicker module.
 
-```
+``` javascript
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
 
 @Component({
