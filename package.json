@@ -1,6 +1,6 @@
 {
     "name": "ng2-daterangepicker",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Angular 2 DaterangePicker component",
     "scripts": {
         "start": "webpack-dev-server --inline --progress --port 8080",
