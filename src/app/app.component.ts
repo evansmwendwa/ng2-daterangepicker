@@ -30,6 +30,13 @@ export class AppComponent implements OnInit{
         }
     ];
 
+    public mainInput = {
+        start: moment().subtract(12, 'month'),
+        end: moment().subtract(6, 'month')
+    }
+
+    public eventLog = '';
+
     constructor(private daterangepickerOptions: DaterangepickerConfig) {
         this.daterangepickerOptions.settings = {
             locale: { format: 'YYYY-MM-DD' },
@@ -48,6 +55,16 @@ export class AppComponent implements OnInit{
     private selectedDate(value: any, dateInput: any) {
         dateInput.start = value.start;
         dateInput.end = value.end;
+    }
+
+    private applyDate(value: any, dateInput: any) {
+        dateInput.start = value.start;
+        dateInput.end = value.end;
+    }
+
+    public calendarEventsHandler(e:any) {
+        console.log(e);
+        this.eventLog += '\nEvent Fired: ' + e.event.type;
     }
 
 }
