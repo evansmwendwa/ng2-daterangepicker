@@ -63,7 +63,72 @@ export class AppComponent {
     }
 }
 ```
-For a list of the available daterangepicker options and samples visit the original site http://www.daterangepicker.com/
+
+## Using Daterangepicker Events
+
+You can bind to the events fired by the daterangepicker. All events will emit an object containing the event fired and the datepicker object.
+
+```
+{
+    event: {},
+    picker: {}
+}
+```
+
+#### Available events
+
+Below is the list of events that you can bind into.
+
+Visit the original site for detailed options and documentation http://www.daterangepicker.com/#options
+
+```
+cancelDaterangepicker
+applyDaterangepicker
+hideCalendarDaterangepicker
+showCalendarDaterangepicker
+hideDaterangepicker
+showDaterangepicker
+```
+
+Below is a sample usage. You can have multiple methods and implement only the events you want.
+
+Create methods that will be called by the events in your component and bind to fired events in the component's template.
+
+``` javascript
+@Component({
+    selector: 'my-app',
+    template: `<input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)"
+    (cancelDaterangepicker)="calendarCanceled($event)"
+    (applyDaterangepicker)="calendarApplied($event)"
+    />`,
+})
+export class AppComponent {
+
+    public daterange: any = {};
+
+    private selectedDate(value: any) {
+        daterange.start = value.start;
+        daterange.end = value.end;
+    }
+
+    // expected output is an object containing the event and the picker.
+    // your method can be named whaterver you want.
+    // you can add multiple params to the method and pass them in the template
+    public calendarCanceled(e:any) {
+        console.log(e);
+        // e.event
+        // e.picker
+    }
+
+    public calendarApplied(e:any) {
+        console.log(e);
+        // e.event
+        // e.picker
+    }
+}
+```
+
+Below is the link to the original project, there's more info regarding the daterangepicker there. http://www.daterangepicker.com/
 
 > **Note:**
 * This Component is still under development and I will be adding more features.
