@@ -8,9 +8,7 @@ npm install ng2-daterangepicker --save
 
 ### install typings for jQuery
 ```
-tsd install jquery --save
-or
-typings install dt~jquery --global --save
+npm install --save-dev @types/jquery
 ```
 
 ### Add the following in your custom typings `custom*.d.ts`
