@@ -2,12 +2,15 @@ import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter, ElementR
 import { ControlValueAccessor } from '@angular/forms';
 import { DaterangepickerConfig } from './config.service';
 
-declare var $:any;
-var $ = require('jquery');
-import 'bootstrap-daterangepicker';
-import * as moment from 'moment';
+declare var require:any;
 
-@Directive({ selector: '[daterangepicker]' })
+import * as $ from "jquery";
+import * as moment from 'moment';
+import 'bootstrap-daterangepicker';
+
+@Directive({
+    selector: '[daterangepicker]'
+})
 export class DaterangePickerComponent implements AfterViewInit {
 
     @Input() options: any = {};
@@ -24,7 +27,7 @@ export class DaterangePickerComponent implements AfterViewInit {
     constructor(private input: ElementRef, private config: DaterangepickerConfig) { }
 
     ngAfterViewInit() {
-        $('head').append('<style>'+require('./daterangepicker.css')+'</style>');
+        $('head').append('<style>'+ require('./daterangepicker.css')+'</style>');
 
         let targetOptions: any = Object.assign({}, this.config.settings, this.options);
 
