@@ -6,6 +6,23 @@ This is a port of the popular Daterange Picker for Bootstrap now optimized for e
 npm install ng2-daterangepicker --save
 ```
 
+### install typings for jQuery
+```
+tsd install jquery --save
+or
+typings install dt~jquery --global --save
+```
+
+### Add the following in your custom typings `custom*.d.ts`
+
+``` javascript
+// src/typings.d.ts (if using Angular ClI)
+// src/custom-typings.d.ts (Angular Starter Example)
+interface JQuery {
+    daterangepicker(target?:any, callback?:any): JQuery;
+}
+```
+
 ### Usage
 
 Add [Bootstrap](http://getbootstrap.com/) to your project's index.html or include in your workflow
