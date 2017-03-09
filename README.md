@@ -6,27 +6,20 @@ This is a port of the popular Daterange Picker for Bootstrap now optimized for e
 npm install ng2-daterangepicker --save
 ```
 
-### install typings for jQuery
-```
-npm install --save-dev @types/jquery
-```
-
-### Add the following in your custom typings `custom*.d.ts`
-
-``` javascript
-// src/typings.d.ts (if using Angular ClI)
-// src/custom-typings.d.ts (Angular Starter Example)
-interface JQuery {
-    daterangepicker(target?:any, callback?:any): JQuery;
-}
-```
-
 ### Usage
 
 Add [Bootstrap](http://getbootstrap.com/) to your project's index.html or include in your workflow
 
 ``` html
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+```
+
+**NB: Override icon classes with your own custom icons if you are using Bootstrap 4 without glyphs and without fontawesome. Classes used are below**
+
+```
+fa fa-calendar glyphicon glyphicon-calendar
+fa fa-chevron-left glyphicon glyphicon-chevron-left
+fa fa-chevron-right glyphicon glyphicon-chevron-right
 ```
 
 import the `Daterangepicker` module in your application module
@@ -40,7 +33,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 
 ```
 
-Use the directive in your component by passing in options `{}` and consuming the `selected` event.
+Use the `daterangepicker` directive in your component by passing in options `{}` and consuming the `selected` event.
 See this project's `src/app/app.component.ts` for a full usage example
 
 ``` javascript
