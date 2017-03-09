@@ -72,6 +72,24 @@ export class AppComponent {
 }
 ```
 
+## Customizing the CSS
+> **Skip Adding CSS in Head** - You can bundle the css that styles the calendar in your app by copying or importing the contents of `./src/app/daterangepicker/daterangepicker.css` and customizing as you like. When you do so set the `skipCSS` property of the config service to `true`
+
+``` javascript
+import { DaterangepickerConfig } from 'ng2-daterangepicker';
+
+@Component({
+    selector:'my-app',
+    template:'<h3>Component Template</h3>'
+})
+export class AppComponent {
+
+    constructor(private daterangepickerOptions: DaterangepickerConfig) {
+        this.daterangepickerOptions.skipCSS = true;
+    }
+}
+```
+
 ## Using Daterangepicker Events
 
 You can bind to the events fired by the daterangepicker. All events will emit an object containing the event fired and the datepicker object.
