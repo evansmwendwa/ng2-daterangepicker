@@ -31,7 +31,9 @@ export class DaterangePickerComponent implements AfterViewInit {
 
         let targetOptions: any = Object.assign({}, this.config.settings, this.options);
 
-        $(this.input.nativeElement).daterangepicker(targetOptions, this.callback.bind(this));
+        // cast $ to any to avoid jquery type checking
+        //$(this.input.nativeElement).daterangepicker(targetOptions, this.callback.bind(this));
+        (<any>$(this.input.nativeElement)).daterangepicker(targetOptions, this.callback.bind(this));
 
         $(this.input.nativeElement).on('cancel.daterangepicker',
             (e:any, picker:any) => {
