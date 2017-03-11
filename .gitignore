@@ -5,6 +5,7 @@ jspm_packages
 bower_components
 aot/*
 lib/*
+src/daterangepicker/*.json
 yarn.lock
 
 # Ignore Compass/SASS cache
