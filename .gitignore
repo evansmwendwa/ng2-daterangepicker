@@ -6,6 +6,7 @@ bower_components
 aot/*
 lib/*
 src/daterangepicker/*.json
+src/daterangepicker/*.ngfactory.ts
 yarn.lock
 
 # Ignore Compass/SASS cache
