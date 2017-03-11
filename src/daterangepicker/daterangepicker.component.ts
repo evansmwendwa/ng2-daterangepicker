@@ -1,5 +1,5 @@
 import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+//import { ControlValueAccessor } from '@angular/forms';
 import { DaterangepickerConfig } from './config.service';
 
 import * as $ from "jquery";

@@ -4,6 +4,7 @@ src/**/*.map
 jspm_packages
 bower_components
 aot/*
+lib/*
 yarn.lock
 
 # Ignore Compass/SASS cache
@@ -46,5 +47,10 @@ $RECYCLE.BIN/
 
 # compressed archives
 *.zip
+*.tar.gz
+*.tar.bz
+*.tar
+*.rar
+*.tgz
 
 npm-debug.log.*

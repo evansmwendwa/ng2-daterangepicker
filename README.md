@@ -14,7 +14,7 @@ Add [Bootstrap](http://getbootstrap.com/) to your project's index.html or includ
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 ```
 
-**NB: Override icon classes with your own custom icons if you are using Bootstrap 4 without glyphs and without fontawesome. Classes used are below**
+**NB: You might want to override icon classes with your own custom icons if you are using Bootstrap 4 without glyphs and without fontawesome. Button icon classes used are below**
 
 ```
 fa fa-calendar glyphicon glyphicon-calendar
@@ -22,6 +22,39 @@ fa fa-chevron-left glyphicon glyphicon-chevron-left
 fa fa-chevron-right glyphicon glyphicon-chevron-right
 ```
 
+### SystemJS Mapping
+If you are using a SystemJS setup then map `ng2-daterangepicker` and it's `dependencies` in your `system.config.js` file
+
+``` javascript
+paths: {
+    // paths serve as alias
+    'npm:': 'node_modules/'
+},
+map: {
+    // angular bundles
+
+    // add ng2-daterangepicker bundles
+    'ng2-daterangepicker': 'npm:ng2-daterangepicker',
+    'jquery': 'npm:jquery/dist/jquery.js',
+    'moment': 'npm:moment',
+    'bootstrap-daterangepicker': 'npm:bootstrap-daterangepicker/daterangepicker.js'
+},
+packages: {
+    // other packages already defined
+
+    // ng2-daterangepicker packages
+    moment: {
+        main: 'moment',
+        defaultExtension: 'js'
+    },
+    'ng2-daterangepicker': {
+        main: 'index',
+        defaultExtension: 'js'
+     }
+}
+```
+
+### import Daterangepicker Module
 import the `Daterangepicker` module in your application module
 
 ``` javascript
@@ -33,8 +66,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 
 ```
 
-Use the `daterangepicker` directive in your component by passing in options `{}` and consuming the `selected` event.
-See this project's `src/app/app.component.ts` for a full usage example
+Use the `daterangepicker` directive in your component by passing in options `{}` and consuming the `selected` event. Directive can be added to inputs, buttons or any other html element
 
 ``` javascript
 @Component({
@@ -45,7 +77,14 @@ export class AppComponent {
 
     public daterange: any = {};
 
-    private selectedDate(value: any) {
+    // see original project for full list of options
+    // can also be setup using the config service to apply to multiple pickers
+    public options: any = {
+        locale: { format: 'YYYY-MM-DD' },
+        alwaysShowCalendars: false,
+    };
+
+    public selectedDate(value: any) {
         this.daterange.start = value.start;
         this.daterange.end = value.end;
     }
@@ -73,7 +112,11 @@ export class AppComponent {
 ```
 
 ## Customizing the CSS
-> **Skip Adding CSS in Head** - You can bundle the css that styles the calendar in your app by copying or importing the contents of `./src/app/daterangepicker/daterangepicker.css` and customizing as you like. When you do so set the `skipCSS` property of the config service to `true`
+> **Skip Adding CSS in Head** - You can bundle the css that styles the calendar in your app by copying or importing the contents of `node_modules/ng2-daterangepicker/daterangepicker.component.css` and customizing as you like. When you do so set the `skipCSS` property of the config service to `true` in order for the module to skip adding the css styles in the head.
+
+> **NB:** Skipping should be done early in your component where the service is used first and before your component has rendered.
+
+> **NB:** Note that the picker dropdown might be added in the body element outside of your component so the css must not be encapsulated by the component. The styles should be added to your global styles.
 
 ``` javascript
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
@@ -157,7 +200,8 @@ export class AppComponent {
 Below is the link to the original project, there's more info regarding the daterangepicker there. http://www.daterangepicker.com/
 
 > **Note:**
-* This Component is still under development and I will be adding more features.
+* This component is in active development so keep checking for new releases and update to the latest version.
 * This Component depends on jQuery, [Moment.js](http://momentjs.com/) and Bootstrap to work correctly.
-* I have not tested usage with system js for now, currently working on Angular 2 Webpack setup, will update after thorough testing.
-* You are encouraged to contribute
+* I have recently added support for `SystemJS` builds in a minor version with a lot of build changes but I do not expect anything to break, if you encounter errors please post an issue or do a pull request to patch it.
+* Contribution is highly encouraged.
+* This package is an Angular (2+) port. see original project http://www.daterangepicker.com
