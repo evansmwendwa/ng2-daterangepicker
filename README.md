@@ -1,6 +1,12 @@
 ## ng2-daterangepicker
 This is a port of the popular Daterange Picker for Bootstrap now optimized for easy use as an importable Angular 2 Module and installable using npm.
 
+### Demos and Sample Usage
+
+For Demos and sample usage of this package see the following code on Plunker
+
+https://embed.plnkr.co/94HAl4q2ITLnahjhYOY0/
+
 ### Installation
 ```
 npm install ng2-daterangepicker --save
