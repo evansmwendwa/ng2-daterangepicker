@@ -1,50 +1,50 @@
 {
-    "name": "ng2-daterangepicker",
-    "version": "2.0.2",
-    "description": "Angular 2 DaterangePicker component",
-    "scripts": {
-        "watch": "tsc -p src -w",
-        "build": "rm -rf lib && tsc -p .",
-        "ngc-build": "rm -rf lib && \"node_modules/.bin/ngc\" -p tsconfig.json"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/evansmwendwa/ng2-daterangepicker"
-    },
-    "bugs": {
-        "url": "https://github.com/evansmwendwa/ng2-daterangepicker/issues"
-    },
-    "homepage": "https://github.com/evansmwendwa/ng2-daterangepicker#readme",
-    "license": "MIT",
-    "files": [
-        "README.md",
-        "index.js",
-        "index.d.ts",
-        "daterangepicker.component.css",
-        "lib/*"
-    ],
-    "main": "./index.js",
-    "types": "./index.d.ts",
-    "dependencies": {
-        "@types/jquery": "^2.0.40",
-        "bootstrap-daterangepicker": "^2.1.25",
-        "jquery": "^3.1.1",
-        "moment": "^2.16.0"
-    },
-    "devDependencies": {
-        "@angular/common": "~2.4.0",
-        "@angular/compiler": "~2.4.0",
-        "@angular/compiler-cli": "^2.4.9",
-        "@angular/core": "~2.4.0",
-        "@angular/forms": "~2.4.0",
-        "@angular/http": "~2.4.0",
-        "@angular/platform-browser": "~2.4.0",
-        "@angular/platform-browser-dynamic": "~2.4.0",
-        "@angular/platform-server": "^2.4.9",
-        "@angular/router": "~3.4.0",
-        "rxjs": "5.0.1",
-        "typescript": "^2.0.10",
-        "zone.js": "^0.7.4",
-        "@types/es6-shim": "^0.31.32"
-    }
+  "name": "ng2-daterangepicker",
+  "version": "2.0.3",
+  "description": "Angular 2 DaterangePicker component",
+  "scripts": {
+    "watch": "tsc -p src -w",
+    "build": "rm -rf lib && tsc -p .",
+    "ngc-build": "rm -rf lib && \"node_modules/.bin/ngc\" -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evansmwendwa/ng2-daterangepicker"
+  },
+  "bugs": {
+    "url": "https://github.com/evansmwendwa/ng2-daterangepicker/issues"
+  },
+  "homepage": "https://github.com/evansmwendwa/ng2-daterangepicker#readme",
+  "license": "MIT",
+  "files": [
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "daterangepicker.component.css",
+    "lib/*"
+  ],
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "@types/jquery": "^2.0.40",
+    "bootstrap-daterangepicker": "^2.1.25",
+    "jquery": "^3.1.1",
+    "moment": "^2.16.0"
+  },
+  "devDependencies": {
+    "@angular/common": "~2.4.0",
+    "@angular/compiler": "~2.4.0",
+    "@angular/compiler-cli": "^2.4.9",
+    "@angular/core": "~2.4.0",
+    "@angular/forms": "~2.4.0",
+    "@angular/http": "~2.4.0",
+    "@angular/platform-browser": "~2.4.0",
+    "@angular/platform-browser-dynamic": "~2.4.0",
+    "@angular/platform-server": "^2.4.9",
+    "@angular/router": "~3.4.0",
+    "rxjs": "5.0.1",
+    "typescript": "^2.0.10",
+    "zone.js": "^0.7.4",
+    "@types/es6-shim": "^0.31.32"
+  }
 }
