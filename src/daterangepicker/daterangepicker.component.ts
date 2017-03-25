@@ -1,4 +1,4 @@
-import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter, ElementRef, OnDestroy } from '@angular/core';
 //import { ControlValueAccessor } from '@angular/forms';
 import { DaterangepickerConfig } from './config.service';
 
@@ -9,7 +9,7 @@ import 'bootstrap-daterangepicker';
 @Directive({
     selector: '[daterangepicker]'
 })
-export class DaterangePickerComponent implements AfterViewInit {
+export class DaterangePickerComponent implements AfterViewInit, OnDestroy {
 
     @Input() options: any = {};
     @Output() selected = new EventEmitter();
@@ -85,5 +85,13 @@ export class DaterangePickerComponent implements AfterViewInit {
         };
 
         this.selected.emit(obj);
+    }
+
+    ngOnDestroy() {
+        try {
+            (<any>$(this.input.nativeElement)).data('daterangepicker').remove();
+        } catch(e) {
+            console.log(e.message);
+        }
     }
 }
