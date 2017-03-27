@@ -139,6 +139,30 @@ export class AppComponent {
 }
 ```
 
+## Daterangepicker methods
+
+You can programmatically update the `startDate` and `endDate` in the picker using the `setStartDate` and `setEndDate` methods. You can access the Date Range Picker object and its functions and properties through the `datePicker` property of the directive using `@ViewChild`.
+
+``` javascript
+import { Component, AfterViewInit, ViewChild  } from '@angular/core';
+import { DaterangePickerComponent } from 'ng2-daterangepicker';
+
+@Component({
+    selector:'my-app',
+    template:'<h3>Component Template</h3>'
+})
+export class AppComponent {
+
+    @ViewChild(DaterangePickerComponent)
+    private picker: DaterangePickerComponent;
+
+    public updateDateRange() {
+        this.picker.datePicker.setStartDate('2017-03-27');
+        this.picker.datePicker.setEndDate('2017-04-08');
+    }
+}
+```
+
 ## Using Daterangepicker Events
 
 You can bind to the events fired by the daterangepicker. All events will emit an object containing the event fired and the datepicker object.
