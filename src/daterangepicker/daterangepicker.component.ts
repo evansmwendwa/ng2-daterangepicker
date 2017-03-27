@@ -22,6 +22,8 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy {
     @Output() hideDaterangepicker = new EventEmitter();
     @Output() showDaterangepicker = new EventEmitter();
 
+    public datePicker: any;
+
     constructor(private input: ElementRef, private config: DaterangepickerConfig) { }
 
     ngAfterViewInit() {
@@ -34,6 +36,8 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy {
         // cast $ to any to avoid jquery type checking
         //$(this.input.nativeElement).daterangepicker(targetOptions, this.callback.bind(this));
         (<any>$(this.input.nativeElement)).daterangepicker(targetOptions, this.callback.bind(this));
+
+        this.datePicker = (<any>$(this.input.nativeElement)).data('daterangepicker');
 
         $(this.input.nativeElement).on('cancel.daterangepicker',
             (e:any, picker:any) => {
