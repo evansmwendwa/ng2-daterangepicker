@@ -93,6 +93,7 @@ export class AppComponent {
     public selectedDate(value: any) {
         this.daterange.start = value.start;
         this.daterange.end = value.end;
+        this.daterange.label = value.label;
     }
 }
 ```
