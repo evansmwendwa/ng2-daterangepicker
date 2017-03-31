@@ -82,10 +82,11 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy {
         );
     }
 
-    private callback(start?: any, end?: any): void {
+    private callback(start?: any, end?: any, label?: any): void {
         let obj = {
             start: start,
-            end: end
+            end: end,
+            label: label
         };
 
         this.selected.emit(obj);

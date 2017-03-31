@@ -1,22 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": ["es2015", "dom"],
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-
-  "include": [
-      "src/**/*"
-  ],
-
-  "angularCompilerOptions": {
-   "genDir": "aot",
-   "skipMetadataEmit" : false
- }
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "declaration": true,
+        "outDir": "lib",
+        "rootDir": "src/app/",
+        "lib": ["es6", "dom"]
+    },
+    "include": [
+        "src/app/daterangepicker/**/*"
+    ]
 }
