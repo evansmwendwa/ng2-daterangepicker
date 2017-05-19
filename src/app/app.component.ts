@@ -59,13 +59,13 @@ export class AppComponent implements OnInit {
 
     ngOnInit() { }
 
-    private selectedDate(value: any, dateInput: any) {
+    public selectedDate(value: any, dateInput: any) {
         dateInput.start = value.start;
         dateInput.end = value.end;
         dateInput.label = value.label;
     }
 
-    private singleSelect(value: any) {
+    public singleSelect(value: any) {
         this.singleDate = value.start;
     }
 
