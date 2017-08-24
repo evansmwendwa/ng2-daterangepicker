@@ -1,5 +1,5 @@
 ## ng2-daterangepicker
-This is a port of the popular Daterange Picker for Bootstrap now optimized for easy use as an importable Angular 2 Module and installable using npm.
+This is an Angular 2+ port of the popular Date Range Picker for Bootstrap http://www.daterangepicker.com/
 
 ### Demos and Sample Usage
 
@@ -77,7 +77,7 @@ Use the `daterangepicker` directive in your component by passing in options `{}`
 ``` javascript
 @Component({
     selector: 'my-app',
-    template: `<input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)" />`,
+    template: `<input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" />`,
 })
 export class AppComponent {
 
@@ -90,7 +90,15 @@ export class AppComponent {
         alwaysShowCalendars: false,
     };
 
-    public selectedDate(value: any) {
+    public selectedDate(value: any, datepicker?: any) {
+        // this is the date the iser selected
+        console.log(value);
+
+        // any object can be passed to the selected event and it will be passed back here
+        datepicker.start = value.start;
+        datepicker.end = value.end;
+
+        // or manupulat your own internal property
         this.daterange.start = value.start;
         this.daterange.end = value.end;
         this.daterange.label = value.label;
