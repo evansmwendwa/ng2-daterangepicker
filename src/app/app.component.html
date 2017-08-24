@@ -1,74 +1,37 @@
 <div class="container-fluid main-container">
+    <h3>Test for change detection</h3>
+
+    <label>
+        <input type="radio" name="opens" checked (click)="toggleDirection('left')"/> left
+    </label>
+    <label>
+        <input type="radio" name="opens" (click)="toggleDirection('right')"/> Right
+    </label>
+
+    <button class="btn btn-primary" (click)="updateSettings()">Update Settings</button>
+
     <h1>ng2-daterangepicker (Demos)</h1>
     <br /><br />
 
     <form>
-        <h3>Using Datepicker with Events</h3>
-        <div style="max-height:250px; overflow-y:scroll;">
-            <pre>
-                {{ eventLog }}
-            </pre>
+        <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)" >
+            <span class="form-control uneditable-input"  name="daterange" >
+                {{ chosenDate.start | date:'M/dd/y' }} - {{ chosenDate.end| date:'M/dd/y' }}
+            </span>
+            <span class="input-group-btn">
+                <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
+            </span>
         </div>
-        <div class="form-group">
-
-            <div class="input-group" daterangepicker (selected)="selectedDate($event, mainInput)"
-            (cancelDaterangepicker)="calendarEventsHandler($event)"
-            (applyDaterangepicker)="calendarEventsHandler($event)"
-            (hideDaterangepicker)="calendarEventsHandler($event)"
-            (showDaterangepicker)="calendarEventsHandler($event)"
-            >
-                <span class="form-control uneditable-input"  name="daterange" >
-                    {{ mainInput.start | date:'M/dd/y' }} - {{ mainInput.end| date:'M/dd/y' }}
-                </span>
-                <span class="input-group-btn">
-                    <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
-                </span>
-            </div>
-        </div>
-
         <p>
-            Above example demonstrates how to tap to the events fired by the daterangepicker
+
         </p>
-
-        <hr />
-
-        <h3>Single Datepicker</h3>
-
-        <div class="form-group">
-
-            <div class="input-group" daterangepicker [options]="singlePicker" (selected)="singleSelect($event)">
-                <span class="form-control uneditable-input"  name="daterange" >
-                    {{ singleDate | date:'M/dd/y' }}
-                </span>
-                <span class="input-group-btn">
-                    <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
-                </span>
-            </div>
-        </div>
-
-        <p>
-            Above example demonstrates how to tap to the events fired by the daterangepicker
-        </p>
-
-        <hr />
-
-        <h3>Different Presets</h3>
-
-        <div class="form-group" *ngFor="let dateInput of dateInputs">
-
-            <div class="input-group" daterangepicker [options]="{startDate:dateInput.start, endDate:dateInput.end }" (selected)="selectedDate($event, dateInput)" >
-                <span class="form-control uneditable-input"  name="daterange" >
-                    {{ dateInput.start | date:'M/dd/y' }} - {{ dateInput.end| date:'M/dd/y' }}
-                </span>
-                <span class="input-group-btn">
-                    <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
-                </span>
-            </div>
-
-            <br />
-
-            <pre>{{ dateInput | json }}</pre>
-            <hr />
+        <div class="input-group" daterangepicker [options]="picker2" (selected)="selectedDate($event, chosenDate2)" >
+            <span class="form-control uneditable-input"  name="daterange" >
+                {{ chosenDate2.start | date:'M/dd/y' }} - {{ chosenDate2.end| date:'M/dd/y' }}
+            </span>
+            <span class="input-group-btn">
+                <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
+            </span>
         </div>
     </form>
 

@@ -10,37 +10,27 @@ import * as moment from 'moment';
 })
 export class AppComponent implements OnInit {
 
-    public dateInputs: any = [
-        {
-            start: moment().subtract(12, 'month'),
-            end: moment().subtract(6, 'month')
-        },
-        {
-            start: moment().subtract(9, 'month'),
-            end: moment().subtract(6, 'month')
-        },
-        {
-            start: moment().subtract(4, 'month'),
-            end: moment()
-        },
-        {
-            start: moment(),
-            end: moment().add(5, 'month'),
-        }
-    ];
+    public picker1 = {
+        opens: 'left',
+        startDate: moment().subtract(12, 'month'),
+        endDate: moment().subtract(6, 'month'),
+    }
 
-    public mainInput = {
+    public picker2 = {
+        startDate: moment().subtract(2, 'month'),
+        endDate: moment(),
+        opens: 'right'
+    }
+
+    public chosenDate: any = {
         start: moment().subtract(12, 'month'),
-        end: moment().subtract(6, 'month')
-    }
+        end: moment().subtract(6, 'month'),
+    };
 
-    public singlePicker = {
-        singleDatePicker: true,
-        showDropdowns: true,
-        "opens": "left"
-    }
-
-    public singleDate: any;
+    public chosenDate2: any = {
+        start: moment().subtract(12, 'month'),
+        end: moment().subtract(6, 'month'),
+    };
 
     public eventLog = '';
 
@@ -48,6 +38,7 @@ export class AppComponent implements OnInit {
         this.daterangepickerOptions.settings = {
             locale: { format: 'YYYY-MM-DD' },
             alwaysShowCalendars: false,
+            "opens": "right",
             ranges: {
                 'Last Month': [moment().subtract(1, 'month'), moment()],
                 'Last 3 Months': [moment().subtract(4, 'month'), moment()],
@@ -60,23 +51,27 @@ export class AppComponent implements OnInit {
     ngOnInit() { }
 
     public selectedDate(value: any, dateInput: any) {
+        console.log(value);
         dateInput.start = value.start;
         dateInput.end = value.end;
-        dateInput.label = value.label;
-    }
-
-    public singleSelect(value: any) {
-        this.singleDate = value.start;
-    }
-
-    private applyDate(value: any, dateInput: any) {
-        dateInput.start = value.start;
-        dateInput.end = value.end;
-        dateInput.label = value.label;
     }
 
     public calendarEventsHandler(e: any) {
         console.log(e);
         this.eventLog += '\nEvent Fired: ' + e.event.type;
+    }
+
+    public toggleDirection(direction: string) {
+        this.picker1.opens = direction;
+    }
+
+    public updateSettings() {
+        this.daterangepickerOptions.settings.locale = { format: 'YYYY/MM/DD' };
+        this.daterangepickerOptions.settings.ranges = {
+            '30 days ago': [moment().subtract(1, 'month'), moment()],
+            '3 months ago': [moment().subtract(4, 'month'), moment()],
+            '6 months ago': [moment().subtract(6, 'month'), moment()],
+            '7 months ago': [moment().subtract(12, 'month'), moment()],
+        };
     }
 }
