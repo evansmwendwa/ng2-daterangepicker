@@ -14,7 +14,7 @@
     <br /><br />
 
     <form>
-        <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)" >
+        <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)" (applyDaterangepicker)="applyDatepicker($event)">
             <span class="form-control uneditable-input"  name="daterange" >
                 {{ chosenDate.start | date:'M/dd/y' }} - {{ chosenDate.end| date:'M/dd/y' }}
             </span>

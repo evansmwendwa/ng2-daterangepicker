@@ -65,6 +65,11 @@ export class AppComponent implements OnInit {
         this.picker1.opens = direction;
     }
 
+    public applyDatepicker(event:any) {
+        console.log('applied');
+        console.log(event);
+    }
+
     public updateSettings() {
         this.daterangepickerOptions.settings.locale = { format: 'YYYY/MM/DD' };
         this.daterangepickerOptions.settings.ranges = {
