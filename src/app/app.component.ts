@@ -12,8 +12,13 @@ export class AppComponent implements OnInit {
 
     public picker1 = {
         opens: 'left',
-        startDate: moment().subtract(12, 'month'),
-        endDate: moment().subtract(6, 'month'),
+        startDate: moment().subtract(5, 'day'),
+        endDate: moment(),
+        isInvalidDate: function(date) {
+          if (date.isSame('2017-09-26', 'day'))
+            return 'mystyle';
+          return false;
+      	}
     }
 
     public picker2 = {
