@@ -12,6 +12,18 @@ https://embed.plnkr.co/94HAl4q2ITLnahjhYOY0/
 npm install ng2-daterangepicker --save
 ```
 
+#### peerDependencies
+
+Please note and install the following peerDependencies if necessary for your setup
+
+```
+"peerDependencies": {
+"@types/jquery": "^3.2.12",
+"jquery": "^3.2.1",
+"moment": "^2.19.1"
+}
+```
+
 ### Usage
 
 Add [Bootstrap](http://getbootstrap.com/) to your project's index.html or include in your workflow
