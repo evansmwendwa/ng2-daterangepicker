@@ -16,7 +16,7 @@ npm install ng2-daterangepicker --save
 
 Please note and install the following peerDependencies if necessary for your setup
 
-```
+```json
 "peerDependencies": {
 "@types/jquery": "^3.2.12",
 "jquery": "^3.2.1",
