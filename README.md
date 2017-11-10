@@ -1,5 +1,7 @@
 ## ng2-daterangepicker
-This is an Angular 2+ port of the popular Date Range Picker for Bootstrap http://www.daterangepicker.com/
+This is an Angular 2, 4, 5+ port of the popular Date Range Picker for Bootstrap http://www.daterangepicker.com/
+
+> **Tested and working in Angular 5. In case of problems please submit an issue**
 
 ### Demos and Sample Usage
 
