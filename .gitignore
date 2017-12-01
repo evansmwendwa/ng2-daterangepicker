@@ -56,3 +56,4 @@ $RECYCLE.BIN/
 *.tgz
 
 npm-debug.log.*
+package-lock.json
