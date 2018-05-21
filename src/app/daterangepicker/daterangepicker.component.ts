@@ -3,7 +3,7 @@ import { KeyValueDiffer, KeyValueDiffers, ElementRef, OnDestroy, DoCheck  } from
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as $ from 'jquery';
 import * as moment from 'moment';
-import '../../../daterangepicker.js';
+import '../../daterangepicker.js';
 
 import { DaterangepickerConfig } from './config.service';
 
