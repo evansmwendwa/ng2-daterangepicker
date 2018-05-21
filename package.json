@@ -33,6 +33,7 @@
   "types": "./index.d.ts",
   "dependencies": {
     "@angular-devkit/core": "^0.6.3",
+    "@types/jquery": "^3.3.2",
     "bootstrap-daterangepicker": "^2.1.25",
     "jquery": "^3.3.1"
   },
