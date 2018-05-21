@@ -1,11 +1,11 @@
-import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { KeyValueDiffer, KeyValueDiffers, ElementRef, OnDestroy, DoCheck  } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Directive, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
+import {KeyValueDiffer, KeyValueDiffers, ElementRef, OnDestroy, DoCheck} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as $ from 'jquery';
 import * as moment from 'moment';
 import '../../daterangepicker.js';
 
-import { DaterangepickerConfig } from './config.service';
+import {DaterangepickerConfig} from './config.service';
 
 @Directive({
     selector: '[daterangepicker]',
@@ -55,63 +55,23 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
     }
 
     attachEvents() {
-        $(this.input.nativeElement).on('cancel.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.cancelDaterangepicker.emit(event);
-            }
-        );
-
-        $(this.input.nativeElement).on('apply.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.applyDaterangepicker.emit(event);
-            }
-        );
-
-        $(this.input.nativeElement).on('hideCalendar.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.hideCalendarDaterangepicker.emit(event);
-            }
-        );
-
-        $(this.input.nativeElement).on('showCalendar.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.showCalendarDaterangepicker.emit(event);
-            }
-        );
-
-        $(this.input.nativeElement).on('hide.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.hideDaterangepicker.emit(event);
-            }
-        );
-
-        $(this.input.nativeElement).on('show.daterangepicker',
-            (e:any, picker:any) => {
-                let event = { event: e, picker: picker };
-                this.showDaterangepicker.emit(event);
-            }
-        );
+        $(this.input.nativeElement).on('cancel.daterangepicker', (event: any, picker: any) => this.cancelDaterangepicker.emit({event, picker}));
+        $(this.input.nativeElement).on('apply.daterangepicker', (event: any, picker: any) => this.applyDaterangepicker.emit({event, picker}));
+        $(this.input.nativeElement).on('hideCalendar.daterangepicker', (event: any, picker: any) => this.hideCalendarDaterangepicker.emit({event, picker}));
+        $(this.input.nativeElement).on('showCalendar.daterangepicker', (event: any, picker: any) => this.showCalendarDaterangepicker.emit({event, picker}));
+        $(this.input.nativeElement).on('hide.daterangepicker', (event: any, picker: any) => this.hideDaterangepicker.emit({event, picker}));
+        $(this.input.nativeElement).on('show.daterangepicker', (event: any, picker: any) => this.showDaterangepicker.emit({event, picker}));
     }
 
-    private callback(start?: any, end?: any, label?: any): void {
-        this.activeRange = {
-            start: start,
-            end: end,
-            label: label
-        }
-
+    private callback({start, end, label, granularity}: { start: any; end: any, label: any, granularity: string }): void {
+        this.activeRange = {start, end, label, granularity};
         this.selected.emit(this.activeRange);
     }
 
     destroyPicker() {
         try {
             (<any>$(this.input.nativeElement)).data('daterangepicker').remove();
-        } catch(e) {
+        } catch (e) {
             console.log(e.message);
         }
     }
@@ -121,13 +81,13 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
     }
 
     ngDoCheck() {
-        let optionsChanged = this._differ['options'].diff(this.options);
-        let settingsChanged = this._differ['settings'].diff(this.config.settings);
+        const optionsChanged = this._differ['options'].diff(this.options);
+        const settingsChanged = this._differ['settings'].diff(this.config.settings);
 
-        if(optionsChanged || settingsChanged) {
+        if (optionsChanged || settingsChanged) {
             this.render();
             this.attachEvents();
-            if(this.activeRange && this.datePicker) {
+            if (this.activeRange && this.datePicker) {
                 this.datePicker.setStartDate(this.activeRange.start);
                 this.datePicker.setEndDate(this.activeRange.end);
             }
