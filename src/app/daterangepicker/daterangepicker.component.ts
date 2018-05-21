@@ -40,7 +40,7 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
     }
 
     ngAfterViewInit() {
-        this.config.embedCSS();
+        // this.config.embedCSS();
         this.render();
         this.attachEvents();
     }
