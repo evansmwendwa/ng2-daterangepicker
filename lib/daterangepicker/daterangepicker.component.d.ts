@@ -22,7 +22,7 @@ export declare class DaterangePickerComponent implements AfterViewInit, OnDestro
     ngAfterViewInit(): void;
     render(): void;
     attachEvents(): void;
-    private callback(start?, end?, label?);
+    private callback({start, end, label, granularity});
     destroyPicker(): void;
     ngOnDestroy(): void;
     ngDoCheck(): void;
