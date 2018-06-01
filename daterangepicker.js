@@ -59,6 +59,8 @@
         this.dataRetentionPeriod = null;
         this.granularity = null;
         this.viewType = 'days';
+        this.enableDaysView = true;
+        this.enableMonthsView = false;
         this.monthsToRender = 12;
         this.startMonth = null;
         this.endMonth = null;
@@ -200,6 +202,16 @@
         if (options.granularity) {
             this.granularity = options.granularity;
             this.viewType = options.granularity
+        }
+
+        if (typeof options.mode === 'string') {
+            if (options.mode === 'daysOnly') {
+                this.enableDaysView = true;
+                this.enableMonthsView = false;
+            } else if  (options.mode === 'daysAndMonths') {
+                this.enableDaysView = true;
+                this.enableMonthsView = true;
+            }
         }
 
         if (options.dailyCalendar) {
@@ -383,11 +395,20 @@
         this.container.find('.applyBtn').html(this.locale.applyLabel);
         this.container.find('.cancelBtn').html(this.locale.cancelLabel);
         if (this.viewType === 'days') {
-            this.container.find('.switch-view.show-months').removeAttr('hidden');
             this.container.find('.switch-view.show-days').attr('hidden', true);
-        } else {
-            this.container.find('.switch-view.show-days').removeAttr('hidden');
+            if (this.enableMonthsView) {
+                this.container.find('.switch-view.show-months').removeAttr('hidden');
+            } else {
+                this.container.find('.switch-view.show-months').attr('hidden', true);
+            }
+        } else if (this.viewType === 'months') {
             this.container.find('.switch-view.show-months').attr('hidden', true);
+            if (this.enableDaysView) {
+                this.container.find('.switch-view.show-days').removeAttr('hidden');
+            } else {
+                this.container.find('.switch-view.show-days').attr('hidden', true);
+            }
+
         }
 
         //
