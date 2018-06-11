@@ -1805,7 +1805,7 @@
                         endMonthWithOffset;
 
                     if (this.endMonth) {
-                        endMonthWithOffset = this.endMonth.clone().subtract(1, 'months');
+                        endMonthWithOffset = this.endMonth.clone();
                     }
 
                     if (this.viewType === 'months' && this.startMonth) {
@@ -1929,8 +1929,8 @@
         },
 
         setEndMonth: function (endDate) {
-            var maxMonthToSelect = moment().add(1, 'month').startOf('month');
-            this.endMonth = endDate.clone().add(1, 'month').startOf('month');
+            var maxMonthToSelect = moment().startOf('month');
+            this.endMonth = endDate.clone().startOf('month');
 
             if (this.endMonth.isSameOrAfter(maxMonthToSelect, 'month')) {
                 this.endMonth = maxMonthToSelect.clone();
