@@ -4,7 +4,7 @@ src/**/*.map
 jspm_packages
 bower_components
 aot/*
-lib/*
+# lib/*
 src/app/daterangepicker/*.json
 src/app/daterangepicker/*.ngfactory.ts
 yarn.lock
@@ -27,8 +27,8 @@ npm-debug.log
 typings
 
 # Ignore build and dist folders
-dist
-build
+# dist
+# build
 
 # =========================
 # Windows detritus

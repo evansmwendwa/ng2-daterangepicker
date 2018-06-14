@@ -27,12 +27,16 @@
     "index.js",
     "index.d.ts",
     "daterangepicker.component.css",
-    "lib/*"
+    "lib/*",
+    "daterangepicker.js"
   ],
   "main": "./index.js",
   "types": "./index.d.ts",
   "dependencies": {
-    "bootstrap-daterangepicker": "^2.1.25"
+    "@angular-devkit/core": "^0.6.3",
+    "@types/jquery": "^3.3.2",
+    "bootstrap-daterangepicker": "^2.1.25",
+    "jquery": "^3.3.1"
   },
   "peerDependencies": {
     "@types/jquery": "^3.2.12",
