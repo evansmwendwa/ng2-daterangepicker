@@ -156,7 +156,6 @@
         //
         // handle all the possible options overriding defaults
         //
-
         if (typeof options.locale === 'object') {
 
             if (typeof options.locale.direction === 'string')
@@ -349,9 +348,8 @@
         //can't be used together for now
         if (this.timePicker && this.autoApply)
             this.autoApply = false;
-
         if (this.autoApply && typeof options.ranges !== 'object') {
-            this.container.find('.ranges').hide();
+            this.container.find('.rvr-daterange-picker__ranges').hide();
         } else if (this.autoApply) {
             this.container.find('.applyBtn, .cancelBtn').addClass('hide');
         }
@@ -363,9 +361,9 @@
             this.container.find('.calendar.right').hide();
             this.container.find('.daterangepicker_input input, .daterangepicker_input > i').hide();
             if (this.timePicker) {
-                this.container.find('.ranges ul').hide();
+                this.container.find('.rvr-daterange-picker__ranges').hide();
             } else {
-                this.container.find('.ranges').hide();
+                this.container.find('.rvr-daterange-picker__ranges').hide();
             }
         }
 
@@ -375,10 +373,10 @@
 
         this.container.addClass('opens' + this.opens);
 
-        if (Object.keys(options.dataRetentionPeriod).length === 0 && options.dataRetentionPeriod.constructor === Object) {
-            if (options.dataRetentionPeriod.monthly_granularity > 0) {
-                this.monthsToRender = options.dataRetentionPeriod.monthly_granularity;
-            }
+        if (options.dataRetentionPeriod && options.dataRetentionPeriod.monthly_granularity !== -1) {
+            this.monthsToRender = options.dataRetentionPeriod.monthly_granularity;
+        } else {
+            this.monthsToRender = 12;
         }
 
         //swap the position of the predefined ranges if opens right
@@ -545,26 +543,26 @@
         },
 
         renderRanges: function (ranges, granularity) {
+            var rangesContainer = this.container.find('.ranges');
+
             if (!ranges) {
+                rangesContainer.attr('hidden', true);
                 return;
             }
 
-
             this.ranges = $.extend(true, {}, ranges);
-
-            var rangesContainer = this.container.find('.ranges');
-            rangesContainer.html('');
+            rangesContainer.removeAttr('hidden').html('');
 
             for (range in ranges) {
                 if (typeof ranges[range][0] === 'string')
                     start = moment(ranges[range][0], this.locale.format);
                 else
-                    start = moment(ranges[range][0]);
+                    start = ranges[range][0]
 
                 if (typeof ranges[range][1] === 'string')
                     end = moment(ranges[range][1], this.locale.format);
                 else
-                    end = moment(ranges[range][1]);
+                    end = ranges[range][1]
 
                 // If the start or end date exceed those allowed by the minDate or dateLimit
                 // options, shorten the range to the allowable period.
@@ -602,6 +600,7 @@
             if (this.showCustomRangeLabel) {
                 list += '<li data-range-key="' + this.locale.customRangeLabel + '">' + this.locale.customRangeLabel + '</li>';
             }
+
             list += '</ul>';
 
             this.container.find('.ranges').html(list);
@@ -704,8 +703,6 @@
                 this.renderCalendar('right');
             }
 
-            this.render
-
             //highlight any predefined range matching the current start and end dates
             this.container.find('.ranges li').removeClass('active');
             if (this.endDate == null) return;
@@ -798,11 +795,11 @@
             if (this.showWeekNumbers || this.showISOWeekNumbers)
                 html += '<th></th>';
 
-            // if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
-            //   html += '<th class="prev available"><i class="material-icons">' + arrow.left + '</i></th>';
-            // } else {
-            html += '<th></th>';
-            // }
+            if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left') && this.mode !== 'daysOnly') {
+                html += '<th class="prev available"><i class="material-icons">' + arrow.left + '</i></th>';
+            } else {
+                html += '<th></th>';
+            }
 
             var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
 
@@ -840,11 +837,11 @@
             }
 
             html += '<th colspan="5" class="month">' + dateHtml + '</th>';
-            // if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker)) {
-            //   html += '<th class="next available"><i class="material-icons">' + arrow.right + '</i></th>';
-            // } else {
-            html += '<th></th>';
-            // }
+            if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker) && this.mode !== 'daysOnly') {
+                html += '<th class="next available"><i class="material-icons">' + arrow.right + '</i></th>';
+            } else {
+                html += '<th></th>';
+            }
 
             html += '</tr>';
             html += '<tr class="day-names">';
@@ -1229,15 +1226,7 @@
             this.updateView();
             this.renderMonthlyRanger();
             var newRanges = $.extend(true, {}, this.viewType === 'months' ? this.monthyCalendarOptions.ranges : this.dailyCalendarOptions.ranges);
-            // if (this.viewType === 'months') {
-            //   console.log(render);
-            //   var newRanges = $.extend(true, {}, this.monthyCalendarOptions.ranges);
-            //   this.renderRanges(newRanges, 'months');
-            // } else {
-            //   this.renderRanges(this.dailyCalendarOptions.ranges, 'days');
-            // }
-            this.renderRanges(newRanges, 'days');
-
+            this.renderRanges(newRanges, this.viewType);
 
             this.container.show();
             this.container.addClass('isOpen');
@@ -1256,26 +1245,30 @@
             }
 
             //if a new date range was selected, invoke the user callback function
-            if (this.viewType === 'days' && (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate)))
+            if (this.viewType === 'days' && (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate))) {
                 this.callback({
                     start: this.startDate,
                     end: this.endDate,
                     label: this.chosenLabel,
                     granularity: this.viewType
                 });
+            }
+
 
             if (!this.endMonth) {
                 this.startMonth = this.oldStartMonth.clone();
                 this.endMonth = this.oldEndMonth.clone();
             }
 
-            if (this.viewType === 'months' && (!this.startMonth.isSame(this.oldStartMonth) || !this.endMonth.isSame(this.oldEndMonth)))
+            if (this.viewType === 'months' && (!this.startMonth.isSame(this.oldStartMonth) || !this.endMonth.isSame(this.oldEndMonth))) {
                 this.callback({
                     start: this.startMonth,
                     end: this.endMonth,
                     label: this.chosenLabel,
                     granularity: this.viewType
                 });
+            }
+
 
             //if picker is attached to a text input, update it
             this.updateElement();
@@ -1302,10 +1295,10 @@
             // itself then call this.hide()
             if (
                 // ie modal dialog fix
-            e.type == "focusin" ||
-            target.closest(this.element).length ||
-            target.closest(this.container).length ||
-            target.closest('.calendar-table').length
+                e.type == "focusin" ||
+                target.closest(this.element).length ||
+                target.closest(this.container).length ||
+                target.closest('.calendar-table').length
             ) return;
             this.hide();
             this.element.trigger('outsideClick.daterangepicker', this);
@@ -1351,9 +1344,7 @@
 
                 if (this.viewType === 'months') {
                     this.startMonth = dates[0];
-                    console.log('START MONTH', dates[0].format('YYYY-MM-DD'));
                     this.endMonth = dates[1];
-                    console.log('END MONTH', dates[1].format('YYYY-MM-DD'));
                 } else {
                     this.startDate = dates[0];
                     this.endDate = dates[1];
@@ -1371,33 +1362,27 @@
         },
 
         clickPrev: function (e) {
-            // since we don't handle this anymore
-            return;
-
-            // var cal = $(e.target).parents('.calendar');
-            // if (cal.hasClass('left')) {
-            //   this.leftCalendar.month.subtract(1, 'month');
-            //   if (this.linkedCalendars)
-            //     this.rightCalendar.month.subtract(1, 'month');
-            // } else {
-            //   this.rightCalendar.month.subtract(1, 'month');
-            // }
-            // this.updateCalendars();
+            var cal = $(e.target).parents('.calendar');
+            if (cal.hasClass('left')) {
+                this.leftCalendar.month.subtract(1, 'month');
+                if (this.linkedCalendars)
+                    this.rightCalendar.month.subtract(1, 'month');
+            } else {
+                this.rightCalendar.month.subtract(1, 'month');
+            }
+            this.updateCalendars();
         },
 
         clickNext: function (e) {
-            // since we don't handle this anymore
-            return;
-
-            // var cal = $(e.target).parents('.calendar');
-            // if (cal.hasClass('left')) {
-            //   this.leftCalendar.month.add(1, 'month');
-            // } else {
-            //   this.rightCalendar.month.add(1, 'month');
-            //   if (this.linkedCalendars)
-            //     this.leftCalendar.month.add(1, 'month');
-            // }
-            // this.updateCalendars();
+            var cal = $(e.target).parents('.calendar');
+            if (cal.hasClass('left')) {
+                this.leftCalendar.month.add(1, 'month');
+            } else {
+                this.rightCalendar.month.add(1, 'month');
+                if (this.linkedCalendars)
+                    this.leftCalendar.month.add(1, 'month');
+            }
+            this.updateCalendars();
         },
 
         hoverDate: function (e) {
@@ -1559,12 +1544,8 @@
             var payload;
             if (this.viewType === 'months') {
                 payload = {startDate: this.startMonth, endDate: this.endMonth, granularity: 'months'};
-                this.startMonth = null;
-                this.endMonth = null;
             } else {
                 payload = {startDate: this.startDate, endDate: this.endDate, granularity: 'days'};
-                this.startDate = null;
-                this.endMonth = null;
             }
 
             this.element.trigger('apply.daterangepicker', payload);
@@ -1789,14 +1770,15 @@
             }
 
             var html = '';
+
             if (this.monthsToRender === 1) {
-                var date = moment().add(1, 'month').startOf('month'),
+                var date = moment().utc().startOf('month'),
                     label = moment().format('MMMM YYYY');
 
                 html += '<div class="month-tile start-range end-range active" data-month="' + date.format() + '">' + label + '</div>';
 
-                this.setStartMonth(date.format());
-                this.setEndMonth(date.format());
+                this.startMonth = date.clone();
+                this.endMonth = date.clone();
             } else {
                 for (var monthTile = this.monthsToRender; monthTile > 0; monthTile--) {
                     var date = moment().subtract(monthTile - 1, 'months').startOf('month'),
@@ -1929,12 +1911,12 @@
         },
 
         setEndMonth: function (endDate) {
-            var maxMonthToSelect = moment().startOf('month');
-            this.endMonth = endDate.clone().startOf('month');
+            var maxMonthToSelect = moment().startOf( 'month' );
+            this.endMonth = endDate;
 
-            if (this.endMonth.isSameOrAfter(maxMonthToSelect, 'month')) {
+            if ( this.endMonth.isSameOrAfter( maxMonthToSelect, 'month' ) ) {
                 this.endMonth = maxMonthToSelect.clone();
-            } else if (this.endMonth.isSameOrBefore(this.startMonth, 'month')) {
+            } else if ( this.endMonth.isSameOrBefore( this.startMonth, 'month' ) ) {
                 this.endMonth = this.startMonth.clone();
             }
 
@@ -1942,10 +1924,10 @@
         },
 
         setStartMonth: function (startDate) {
-            var minMonthToSelect = moment().subtract(this.monthsToRender - 1).startOf('month');
-            this.startMonth = startDate.clone();
+            var minMonthToSelect = moment().startOf( 'month' );
+            this.startMonth = startDate;
 
-            if (this.startMonth.isAfter(minMonthToSelect))
+            if ( this.startMonth.isAfter( minMonthToSelect ) )
                 this.startMonth = minMonthToSelect.clone();
 
             this.renderMonthlyRanger();
