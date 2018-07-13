@@ -33,7 +33,7 @@
   "types": "./index.d.ts",
   "peerDependencies": {
     "@types/jquery": "^3.2.12",
-    "bootstrap-daterangepicker": "^2.1.25",
+    "bootstrap-daterangepicker": ">=2.1.25",
     "jquery": "^3.2.1",
     "moment": "^2.19.1"
   },
