@@ -31,11 +31,9 @@
   ],
   "main": "./index.js",
   "types": "./index.d.ts",
-  "dependencies": {
-    "bootstrap-daterangepicker": "^2.1.25"
-  },
   "peerDependencies": {
     "@types/jquery": "^3.2.12",
+    "bootstrap-daterangepicker": ">=2.1.25",
     "jquery": "^3.2.1",
     "moment": "^2.19.1"
   },
