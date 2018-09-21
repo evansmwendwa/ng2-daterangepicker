@@ -12,7 +12,6 @@ import 'bootstrap-daterangepicker';
 })
 export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoCheck {
 
-    private activeRange: any;
     private targetOptions: any = {};
     private _differ: any = {};
 
@@ -99,13 +98,13 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
     }
 
     private callback(start?: any, end?: any, label?: any): void {
-        this.activeRange = {
+        let activeRange = {
             start: start,
             end: end,
             label: label
         }
 
-        this.selected.emit(this.activeRange);
+        this.selected.emit(activeRange);
     }
 
     destroyPicker() {
@@ -124,12 +123,16 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
         let optionsChanged = this._differ['options'].diff(this.options);
         let settingsChanged = this._differ['settings'].diff(this.config.settings);
 
-        if(optionsChanged || settingsChanged) {
-            this.render();
-            this.attachEvents();
-            if(this.activeRange && this.datePicker) {
-                this.datePicker.setStartDate(this.activeRange.start);
-                this.datePicker.setEndDate(this.activeRange.end);
+        if (optionsChanged || settingsChanged) {
+            if (this.datePicker) {
+                var start = this.datePicker.startDate;
+                var end = this.datePicker.endDate;
+
+                this.render();
+                this.attachEvents();
+
+                this.datePicker.setStartDate(start);
+                this.datePicker.setEndDate(end);
             }
         }
     }
