@@ -4,7 +4,6 @@ src/**/*.map
 jspm_packages
 bower_components
 aot/*
-lib/*
 src/app/daterangepicker/*.json
 src/app/daterangepicker/*.ngfactory.ts
 yarn.lock
