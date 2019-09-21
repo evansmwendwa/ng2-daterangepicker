@@ -50,7 +50,14 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
         // cast $ to any to avoid jquery type checking
         (<any>$(this.input.nativeElement)).daterangepicker(this.targetOptions, this.callback.bind(this));
 
-        this.datePicker = (<any>$(this.input.nativeElement)).data('daterangepicker');
+        if (this.options.customClasses && this.options.customClasses.length) {
+            for (let customClass of this.options.customClasses) {
+                this.datePicker = (<any>$(this.input.nativeElement)).data('daterangepicker').container.addClass(customClass);
+            }
+        } else {
+          this.datePicker = (<any>$(this.input.nativeElement)).data('daterangepicker');
+        }
+        
     }
 
     attachEvents() {
