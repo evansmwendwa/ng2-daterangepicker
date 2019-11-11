@@ -3,25 +3,39 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ng2-daterangepicker": {
+      "root": "projects/ng2-daterangepicker",
+      "sourceRoot": "projects/ng2-daterangepicker/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng2-daterangepicker/tsconfig.lib.json",
+            "project": "projects/ng2-daterangepicker/ng-package.json"
+          }
+        }
+      }
+    },
     "ci": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/ci-app",
+      "sourceRoot": "projects/ci-app/src",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
+            "index": "projects/ci-app/src/index.html",
+            "main": "projects/ci-app/src/main.ts",
+            "tsConfig": "projects/ci-app/src/tsconfig.app.json",
+            "polyfills": "projects/ci-app/src/polyfills.ts",
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "projects/ci-app/src/assets",
+              "projects/ci-app/src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/ci-app/src/styles.css"
             ],
             "scripts": []
           },
@@ -38,8 +52,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ci-app/src/environments/environment.ts",
+                  "with": "projects/ci-app/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -65,17 +79,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
+            "main": "projects/ci-app/src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "polyfills": "projects/ci-app/src/polyfills.ts",
+            "tsConfig": "projects/ci-app/src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.css"
+              "projects/ci-app/src/styles.css"
             ],
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "projects/ci-app/src/assets",
+              "projects/ci-app/src/favicon.ico"
             ]
           }
         },
@@ -83,8 +97,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "projects/ci-app/src/tsconfig.app.json",
+              "projects/ci-app/src/tsconfig.spec.json"
             ],
             "exclude": []
           }

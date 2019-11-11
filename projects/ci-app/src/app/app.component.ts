@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DaterangepickerConfig } from './daterangepicker/config.service';
+import { DaterangepickerConfig } from '../../../ng2-daterangepicker/src/config.service';
 
 import * as moment from 'moment';
 

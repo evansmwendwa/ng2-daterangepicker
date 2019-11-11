@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-declare var require:any;
-import * as $ from "jquery";
+import * as jqueryProxy from 'jquery';
+const $: JQueryStatic = (<any>jqueryProxy).default || jqueryProxy;
 
 @Injectable()
 export class DaterangepickerConfig {

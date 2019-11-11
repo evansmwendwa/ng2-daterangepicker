@@ -1,10 +1,10 @@
-import { Directive, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { KeyValueDiffer, KeyValueDiffers, ElementRef, OnDestroy, DoCheck  } from '@angular/core';
+import { Directive, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import { KeyValueDiffers, ElementRef, OnDestroy, DoCheck  } from '@angular/core';
 import { DaterangepickerConfig } from './config.service';
 
-import * as $ from "jquery";
-import * as moment from 'moment';
 import 'bootstrap-daterangepicker';
+import * as jqueryProxy from 'jquery';
+const $: JQueryStatic = (<any>jqueryProxy).default || jqueryProxy;
 
 @Directive({
     selector: '[daterangepicker]',
@@ -57,7 +57,7 @@ export class DaterangePickerComponent implements AfterViewInit, OnDestroy, DoChe
         } else {
           this.datePicker = (<any>$(this.input.nativeElement)).data('daterangepicker');
         }
-        
+
     }
 
     attachEvents() {
