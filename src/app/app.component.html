@@ -1,38 +1,17 @@
-<div class="container-fluid main-container">
-    <h3>Test for change detection</h3>
+<div>
+  <div class="container">
+    <h1>Angular 9</h1>
+    <label for="date">Select Date</label>
 
-    <label>
-        <input type="radio" name="opens" checked (click)="toggleDirection('left')"/> left
-    </label>
-    <label>
-        <input type="radio" name="opens" (click)="toggleDirection('right')"/> Right
-    </label>
+    <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)"
+      (applyDaterangepicker)="applyDatepicker($event)">
+      <span class="form-control uneditable-input" name="daterange">
+        {{ chosenDate.start | date:'mediumDate' }} - {{ chosenDate.end| date:'mediumDate' }}
+      </span>
+      <span class="input-group-btn">
+        <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
+      </span>
+    </div>
 
-    <button class="btn btn-primary" (click)="updateSettings()">Update Settings</button>
-
-    <h1>ng2-daterangepicker (Demos)</h1>
-    <br /><br />
-
-    <form>
-        <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)" (applyDaterangepicker)="applyDatepicker($event)">
-            <span class="form-control uneditable-input"  name="daterange" >
-                {{ chosenDate.start | date:'M/dd/y' }} - {{ chosenDate.end| date:'M/dd/y' }}
-            </span>
-            <span class="input-group-btn">
-                <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
-            </span>
-        </div>
-        <p>
-
-        </p>
-        <div class="input-group" daterangepicker [options]="picker2" (selected)="selectedDate($event, chosenDate2)" >
-            <span class="form-control uneditable-input"  name="daterange" >
-                {{ chosenDate2.start | date:'M/dd/y' }} - {{ chosenDate2.end| date:'M/dd/y' }}
-            </span>
-            <span class="input-group-btn">
-                <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
-            </span>
-        </div>
-    </form>
-
+  </div>
 </div>
