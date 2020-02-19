@@ -31,6 +31,14 @@ Please note and install the following peerDependencies if necessary for your set
 }
 ```
 
+### Update tsconfig.json
+
+Update tsconfig.json file in your project root to allow syntectic default imports
+
+```javascript
+"allowSyntheticDefaultImports": true
+```
+
 ### Usage
 
 Add JQuery and the custom css stylesheet to `angular.json`. You can customize the stylesheet as you want. There's a line importing Bootstrap that you can remove if you already have Bootstrap in your project. The css files can also be added to your existing stylesheets
