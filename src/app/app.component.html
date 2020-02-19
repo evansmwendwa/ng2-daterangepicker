@@ -4,7 +4,7 @@
     <label for="date">Select Date</label>
 
     <div class="input-group" daterangepicker [options]="picker1" (selected)="selectedDate($event, chosenDate)"
-      (applyDaterangepicker)="applyDatepicker($event)">
+      (applyDaterangepicker)="applyDatepicker($event)" (showDaterangepicker)="calendarEventsHandler($event)">
       <span class="form-control uneditable-input" name="daterange">
         {{ chosenDate.start | date:'mediumDate' }} - {{ chosenDate.end| date:'mediumDate' }}
       </span>

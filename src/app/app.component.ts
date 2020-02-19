@@ -46,8 +46,8 @@ export class AppComponent {
     dateInput.end = value.end;
   }
 
-  public calendarEventsHandler(e: any): void {
-    console.log({ calendarEvents: e });
+  public calendarEventsHandler(e: any, dateInput: any): void {
+    console.log({ calendarEvents: e, dateInput });
   }
 
   public applyDatepicker(e: any) {
