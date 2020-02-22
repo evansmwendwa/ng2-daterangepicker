@@ -7,5 +7,7 @@ export class DaterangepickerConfig {
 
   public settings: any;
 
-  constructor() { }
+  constructor() {
+    this.settings = {};
+  }
 }
