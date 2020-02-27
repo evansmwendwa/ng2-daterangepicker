@@ -1,19 +1,17 @@
 ng2-daterangepicker
 -------------------
 
+![Daterange Picker](https://raw.githubusercontent.com/evansmwendwa/ng2-daterangepicker/master/projects/ng2-daterangepicker/assets/screen-shot.png)
+
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
 ## Version 3.0.0 adds support for Angular 9.0 Ivy compiler
 
 I have not made efforts to test earlier versions of angular with version 3.x of this package but it should still work.
 
-## Demos and Sample Usage
-
-For Demos and sample usage of this package see the following code on Plunker
-
-https://embed.plnkr.co/94HAl4q2ITLnahjhYOY0/
-
 ### Installation
+
+Use your preferred package manager
 ```
 npm install ng2-daterangepicker
 yarn add ng2-daterangepicker
@@ -41,13 +39,14 @@ Update tsconfig.json file in your project root to allow syntectic default import
 
 ### Usage
 
-Add JQuery and the custom css stylesheet to `angular.json`. You can customize the stylesheet as you want. There's a line importing Bootstrap that you can remove if you already have Bootstrap in your project. The css files can also be added to your existing stylesheets
+Add JQuery and the custom css stylesheet to `angular.json`. You can customize the stylesheet as you want.
+
+Latest version does not require Bootstrap. You can also skip this and copy the contents of the css file to your stylesheets for customizations.
 
 ```json
 {
   "styles": [
-    "src/styles.css",
-    "daterangepicker.css"
+    "node_modules/ng2-daterangepicker/assets/daterangepicker.css"
   ],
   "scripts": [
     "node_modules/jquery/dist/jquery.min.js"
@@ -67,7 +66,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 
 ```
 
-Use the `daterangepicker` directive in your component by passing in options `{}` and consuming the `selected` event. Directive can be added to inputs, buttons or any other html element
+Use the `daterangepicker` directive in your component by passing in options `{}` and consuming the `selected` event. Directive can be added to inputs, buttons or any other html element.
 
 ### Component Template
 
@@ -104,6 +103,8 @@ export class AppComponent {
   }
 }
 ```
+
+### Using Multiple Instances
 
 You can pass global settings that can be overloaded by the `options` object in the daterangepicker instances. Use the `DaterangepickerConfig` service to do so. The service provider is set in the daterangepicker module.
 
