@@ -1,59 +1,47 @@
-system-config.js*
-src/**/*.js
-src/**/*.map
-jspm_packages
-bower_components
-aot/*
-lib/*
-src/app/daterangepicker/*.json
-src/app/daterangepicker/*.ngfactory.ts
-yarn.lock
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Ignore Compass/SASS cache
-.sass-cache
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-# Ignore Mac DS_Store files
-.DS_Store
-.idea
+# dependencies
+/node_modules
 
-## Ignore Python optimisation/cache
-__pycache__/
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
 
-# Ignore Node Modules
-node_modules
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
-# Ignore Typescript typings
-typings
-
-# Ignore build and dist folders
-dist
-build
-
-# =========================
-# Windows detritus
-# =========================
-
-# Windows image file caches
+# System Files
+.DS_Store
 Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Temporary Word/Office files
-~$*
-
-# compressed archives
-*.zip
-*.tar.gz
-*.tar.bz
-*.tar
-*.rar
 *.tgz
-
-npm-debug.log.*
-package-lock.json
