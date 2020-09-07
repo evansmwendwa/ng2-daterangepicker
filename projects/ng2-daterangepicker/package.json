@@ -19,5 +19,6 @@
     "tslib": "^1.10.0",
     "jquery": "^3.4.1",
     "@types/jquery": "^3.3.32"
-  }
+  },
+  "sideEffects": ["*.css"]
 }
