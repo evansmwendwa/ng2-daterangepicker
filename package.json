@@ -22,7 +22,7 @@
     "@types/jquery": "^3.3.32",
     "daterangepicker": "^3.0.5",
     "jquery": "^3.5.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
